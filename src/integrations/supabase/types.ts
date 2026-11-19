@@ -14,13 +14,173 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      orders: {
+        Row: {
+          cep: string
+          city: string
+          code: string
+          complement: string | null
+          created_at: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          id: string
+          items: Json
+          neighborhood: string
+          number: string
+          shipping: number
+          state: string
+          status: string
+          street: string
+          subtotal: number
+          total: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          cep: string
+          city: string
+          code?: string
+          complement?: string | null
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          customer_phone: string
+          id?: string
+          items: Json
+          neighborhood: string
+          number: string
+          shipping?: number
+          state: string
+          status?: string
+          street: string
+          subtotal: number
+          total: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          cep?: string
+          city?: string
+          code?: string
+          complement?: string | null
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          customer_phone?: string
+          id?: string
+          items?: Json
+          neighborhood?: string
+          number?: string
+          shipping?: number
+          state?: string
+          status?: string
+          street?: string
+          subtotal?: number
+          total?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          active: boolean
+          created_at: string
+          featured: boolean
+          features: string[]
+          id: string
+          name: string
+          price: number
+          sort_order: number
+          tag: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          featured?: boolean
+          features?: string[]
+          id: string
+          name: string
+          price: number
+          sort_order?: number
+          tag: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          featured?: boolean
+          features?: string[]
+          id?: string
+          name?: string
+          price?: number
+          sort_order?: number
+          tag?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          cep: string | null
+          city: string | null
+          complement: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          neighborhood: string | null
+          number: string | null
+          phone: string | null
+          state: string | null
+          street: string | null
+          updated_at: string
+        }
+        Insert: {
+          cep?: string | null
+          city?: string | null
+          complement?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          neighborhood?: string | null
+          number?: string | null
+          phone?: string | null
+          state?: string | null
+          street?: string | null
+          updated_at?: string
+        }
+        Update: {
+          cep?: string | null
+          city?: string | null
+          complement?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          neighborhood?: string | null
+          number?: string | null
+          phone?: string | null
+          state?: string | null
+          street?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      place_order: {
+        Args: { _address: Json; _customer: Json; _items: Json }
+        Returns: {
+          order_code: string
+          order_id: string
+          order_items: Json
+          order_total: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
