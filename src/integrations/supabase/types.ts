@@ -173,7 +173,12 @@ export type Database = {
     }
     Functions: {
       place_order: {
-        Args: { _address: Json; _customer: Json; _items: Json }
+        Args: {
+          _address: Json
+          _customer: Json
+          _items: Json
+          _user_id: string
+        }
         Returns: {
           order_code: string
           order_id: string

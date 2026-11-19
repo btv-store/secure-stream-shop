@@ -28,3 +28,11 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Order totals are computed only by the `place_order` database function from the `products` table, called by the `placeOrder` server function with the service role; the browser sends product ids and quantities only. Why: customers must not be able to change prices.
+- Checkout requires a signed-in account (`/_authenticated/checkout`) and the customer e-mail comes from the verified session. Why: prevents fake orders and e-mail spam to arbitrary addresses.
+- Product data lives in the `products` table and is read through the `listProducts` server function; never hardcode prices in components. Why: one source of truth for display and charging.
+- Order e-mails go through the Gmail connector in `src/lib/gmail.server.ts`, best effort and skipped when the connector key is missing. Why: an e-mail failure must never block an order.
+- Secret keys (service role, connector keys, LOVABLE_API_KEY) are read only inside server handlers via `process.env`. Why: nothing secret may reach the browser bundle.
